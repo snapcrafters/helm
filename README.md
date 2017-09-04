@@ -16,6 +16,9 @@ distributions.</p>
 ## Install
 
     sudo snap install helm
+    mkdir -p $HOME/snap/helm/common/kube
+    cp $HOME/.kube/config $HOME/snap/helm/common/kube
+    helm init
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 

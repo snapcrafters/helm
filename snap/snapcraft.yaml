@@ -12,6 +12,9 @@ confinement: strict
 apps:
   helm:
     command: helm
+    environment:
+        HELM_HOME: $SNAP_USER_COMMON
+        KUBECONFIG: $SNAP_USER_COMMON/kube/config
     plugs:
       - network
       - home
