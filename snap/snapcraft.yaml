@@ -11,13 +11,26 @@ confinement: strict
 
 apps:
   helm:
-    command: helm
+    command: helm.wrapper
+    environment:
+        HELM_HOME: $SNAP_USER_COMMON
+        KUBECONFIG: $SNAP_USER_COMMON/kube/config
     plugs:
       - network
+      - network-bind
       - home
 
 parts:
+  wrapper:
+    plugin: dump
+    source: .
+    stage:
+      - helm.wrapper
   helm:
+    after:
+      - wrapper
     plugin: dump
     source: https://storage.googleapis.com/kubernetes-helm/helm-v2.6.1-linux-amd64.tar.gz
+    stage:
+      - helm
 
