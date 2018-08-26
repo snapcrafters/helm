@@ -1,5 +1,5 @@
 name: helm
-version: '2.9.1'
+version: '2.10.0'
 summary: The Kubernetes package manager
 description: |
   Helm is a tool for managing Kubernetes
