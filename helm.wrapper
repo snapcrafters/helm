@@ -1,8 +1,0 @@
-#!/bin/sh -e
-mkdir -p $SNAP_USER_COMMON/kube
-if [ ! -e "$SNAP_USER_COMMON/kube/config" ]; then
-  echo "Please copy Kubernetes config to $SNAP_USER_COMMON/kube/config." 1>&2
-  exit 1
-fi
-
-$SNAP/helm $@
