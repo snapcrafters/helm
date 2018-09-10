@@ -15,7 +15,7 @@ distributions.</p>
 
 ## Install
 
-    sudo snap install helm
+    sudo snap install helm --classic
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
