@@ -12,6 +12,8 @@ confinement: classic
 apps:
   helm:
     command: helm
+  tiller:
+    command: tiller
 
 architectures:
   - build-on: amd64
