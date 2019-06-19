@@ -31,3 +31,4 @@ parts:
       - on arm64: https://storage.googleapis.com/kubernetes-helm/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm64.tar.gz
     stage:
       - helm
+      - tiller
