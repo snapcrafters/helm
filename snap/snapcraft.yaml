@@ -23,6 +23,9 @@ architectures:
 parts:
   helm:
     plugin: dump
+    stage-packages:
+      - git
+      - socat
     source:
       - on amd64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-amd64.tar.gz
       - on i386: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-386.tar.gz
