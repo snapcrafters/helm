@@ -1,6 +1,6 @@
 base: core18
 name: helm
-version: '3.0.1'
+version: '2.16.1'
 summary: The Kubernetes package manager
 description: |
   Helm is a tool for managing Kubernetes
@@ -12,6 +12,8 @@ confinement: classic
 apps:
   helm:
     command: helm
+  tiller:
+    command: tiller
 
 architectures:
   - build-on: amd64
@@ -32,3 +34,4 @@ parts:
       - on arm64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm64.tar.gz
     stage:
       - helm
+      - tiller
