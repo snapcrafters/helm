@@ -1,6 +1,6 @@
 base: core18
 name: helm
-version: '3.6.2'
+version: '3.6.3'
 summary: The Kubernetes package manager
 description: |
   Helm is a tool for managing Kubernetes
