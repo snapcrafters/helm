@@ -1,17 +1,17 @@
 base: core18
 name: helm
-version: '3.10.1'
+version: '3.10.3'
 summary: The Kubernetes package manager
 description: |
   Helm is a tool for managing Kubernetes
   charts. Charts are packages of
   pre-configured Kubernetes resources.
 grade: stable
-confinement: classic
+confinement: strict
 
 apps:
   helm:
-    command: helm
+    command: bin/helm
 
 architectures:
   - build-on: amd64
@@ -30,5 +30,7 @@ parts:
       - on i386: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-386.tar.gz
       - on armhf: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm.tar.gz
       - on arm64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm64.tar.gz
+    organize:
+      helm: bin/helm
     stage:
-      - helm
+      - bin/helm
