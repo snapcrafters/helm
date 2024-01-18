@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://assets.stickpng.com/images/62b3248ab223544c209f5ea8.png" alt="Helm" width="200px">
+  <img src="./snap/gui/helm.png" alt="Helm" width="200px">
   <br />
   Helm
 </h1>
