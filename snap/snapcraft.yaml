@@ -1,13 +1,29 @@
-base: core18
 name: helm
-version: '3.14.0'
+version: 3.14.0
 summary: The Kubernetes package manager
+license: MPL-2.0
+contact: https://github.com/snapcrafters/helm/issues
+issues: https://github.com/snapcrafters/helm/issues
+source-code: https://github.com/snapcrafters/helm
+website: https://helm.sh
 description: |
-  Helm is a tool for managing Kubernetes
-  charts. Charts are packages of
+  Helm is a tool for managing Kubernetes charts. Charts are packages of
   pre-configured Kubernetes resources.
+
+  **Are you having issues?**
+
+  Let us know by creating a new issue here:
+  https://github.com/snapcrafters/helm/issues
+
+  **Authors**
+
+  This snap is maintained by the Snapcrafters community, and is not
+  necessarily endorsed or officially maintained by the upstream developers.
+base: core22
 grade: stable
 confinement: classic
+compression: lzo
+icon: snap/gui/helm.png
 
 apps:
   helm:
@@ -15,7 +31,6 @@ apps:
 
 architectures:
   - build-on: amd64
-  - build-on: i386
   - build-on: armhf
   - build-on: arm64
 
@@ -27,7 +42,6 @@ parts:
       - socat
     source:
       - on amd64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-amd64.tar.gz
-      - on i386: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-386.tar.gz
       - on armhf: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm.tar.gz
       - on arm64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm64.tar.gz
     stage:
