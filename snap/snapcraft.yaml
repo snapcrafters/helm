@@ -19,7 +19,7 @@ description: |
 
   This snap is maintained by the Snapcrafters community, and is not
   necessarily endorsed or officially maintained by the upstream developers.
-base: core22
+base: core24
 grade: stable
 confinement: classic
 compression: lzo
@@ -29,10 +29,10 @@ apps:
   helm:
     command: helm
 
-architectures:
-  - build-on: amd64
-  - build-on: armhf
-  - build-on: arm64
+platforms:
+  amd64:
+  armhf:
+  arm64:
 
 parts:
   helm:
