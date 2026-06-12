@@ -33,6 +33,7 @@ platforms:
   amd64:
   armhf:
   arm64:
+  s390x:
 
 parts:
   helm:
@@ -44,5 +45,6 @@ parts:
       - on amd64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-amd64.tar.gz
       - on armhf: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm.tar.gz
       - on arm64: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-arm64.tar.gz
+      - on s390x: https://get.helm.sh/helm-v$SNAPCRAFT_PROJECT_VERSION-linux-s390x.tar.gz
     stage:
       - helm
