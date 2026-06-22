@@ -22,8 +22,28 @@ jobs:
         with:
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           update-script: |
+            CURRENT_VERSION=$(awk '/^version:/ {print $2; exit}' snap/snapcraft.yaml)
             VERSION=$(
-              curl -sL https://api.github.com/repos/helm/helm/releases |
-              jq -r '.[].tag_name' | grep -m1 -vE 'alpha|beta|rc' | tr -d 'v'
+              curl -fsSL https://api.github.com/repos/helm/helm/releases |
+              jq -r '
+                .[]
+                | select(.prerelease | not)
+                | .tag_name
+                | sub("^v"; "")
+              ' |
+              sort -rV |
+              head -n1
             )
+
+            if [ -z "$VERSION" ]; then
+              echo "No non-prerelease Helm release found"
+              exit 1
+            fi
+
+            HIGHEST_VERSION=$(printf '%s\n%s\n' "$CURRENT_VERSION" "$VERSION" | sort -V | tail -n1)
+            if [ "$HIGHEST_VERSION" != "$VERSION" ]; then
+              echo "Refusing to move Helm backwards from $CURRENT_VERSION to $VERSION"
+              exit 0
+            fi
+
             sed -i 's/^\(version: \).*$/\1'"$VERSION"'/' snap/snapcraft.yaml
