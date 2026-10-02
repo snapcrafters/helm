@@ -1,9 +1,9 @@
 name: Release
 
 on:
-  # Run the workflow each time new commits are pushed to the candidate branch. 
+  # Run the workflow each time new commits are pushed to the 3 branch.
   push:
-    branches: [ "candidate" ]
+    branches: [ "3" ]
   workflow_dispatch:
 
 concurrency:
@@ -27,18 +27,19 @@ jobs:
         uses: snapcrafters/ci/get-architectures@main
 
   release:
-    name: 🚢 Release to latest/candidate
+    name: 🚢 Release to 3/candidate
     needs: get-architectures
     runs-on: ubuntu-latest
-    environment: "Candidate Branch"
+    environment: "3 Branch"
     strategy:
       matrix:
         architecture: ${{ fromJSON(needs.get-architectures.outputs.architectures-list) }}
     steps:
-      - name: 🚢 Release to latest/candidate
+      - name: 🚢 Release to 3/candidate
         uses: snapcrafters/ci/release-to-candidate@main
         with:
           architecture: ${{ matrix.architecture }}
+          channel: 3/candidate
           launchpad-token: ${{ secrets.LP_BUILD_SECRET }}
           repo-token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           store-token: ${{ secrets.SNAP_STORE_CANDIDATE }}
@@ -46,7 +47,7 @@ jobs:
   call-for-testing:
     name: 📣 Create call for testing
     needs: [release, get-architectures]
-    environment: "Candidate Branch"
+    environment: "3 Branch"
     runs-on: ubuntu-latest
     outputs:
       issue-number: ${{ steps.issue.outputs.issue-number }}
@@ -56,4 +57,6 @@ jobs:
         uses: snapcrafters/ci/call-for-testing@main
         with:
           architectures: ${{ needs.get-architectures.outputs.architectures }}
+          channel: 3/candidate
+          promotion-channel: 3/stable
           github-token: ${{ secrets.GITHUB_TOKEN }}
